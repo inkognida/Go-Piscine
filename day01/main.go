@@ -11,40 +11,6 @@ type DBReader interface {
 	parseFile() Recipes
 }
 
-// type Recipes struct {
-// 	XMLName xml.Name `xml:"recipes"`
-// 	Text    string   `xml:",chardata"`
-// 	Cake    []struct {
-// 		Text        string `xml:",chardata"`
-// 		Name        string `xml:"name"`
-// 		Stovetime   string `xml:"stovetime"`
-// 		Ingredients struct {
-// 			Text string `xml:",chardata"`
-// 			Item []struct {
-// 				Text      string `xml:",chardata"`
-// 				Itemname  string `xml:"itemname"`
-// 				Itemcount string `xml:"itemcount"`
-// 				Itemunit  string `xml:"itemunit"`
-// 			} `xml:"item"`
-// 		} `xml:"ingredients"`
-// 	} `xml:"cake"`
-// }
-
-// type Recipes struct {
-// 	XMLName xml.Name `xml:"recipes"`
-// 	Cake    []struct {
-// 		Name        string `xml:"name"`
-// 		Stovetime   string `xml:"stovetime"`
-// 		Ingredients struct {
-// 			Item []struct {
-// 				Itemname  string `xml:"itemname"`
-// 				Itemcount string `xml:"itemcount"`
-// 				Itemunit  string `xml:"itemunit"`
-// 			} `xml:"item"`
-// 		} `xml:"ingredients"`
-// 	} `xml:"cake"`
-// }
-
 type Recipes struct {
 	XMLName xml.Name `xml:"recipes" json:"recipes,omitempty"`
 	Cake    []struct {
@@ -57,9 +23,9 @@ type Recipes struct {
 				Itemunit  string `xml:"itemunit"`
 			} `xml:"item" json:"item,omitempty"`
 
-			IngredientName  string `json:"ingredient_name"`
-			IngredientCount string `json:"ingredient_count"`
-			IngredientUnit  string `json:"ingredient_unit,omitempty"`
+			IngredientName  string `xml:"ingredient_name,omitempty" json:"ingredient_name"`
+			IngredientCount string `xml:"ingredient_count,omitempty" json:"ingredient_count"`
+			IngredientUnit  string `xml:"ingredient_unit,omitempty" json:"ingredient_unit,omitempty"`
 		} `xml:"ingredients" json:"ingredients"`
 	} `xml:"cake" json:"cake"`
 }
