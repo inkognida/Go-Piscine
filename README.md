@@ -1,9 +1,7 @@
 # Go-Piscine
 Go Piscine Sber-21
 
-   
-# 21_school_Go_intensive
-Solutions of tasks from Golang intensive in scool 21 by sber.
+
 ## Day 1
 ### ex00
 Count Mean, Median, Mode and Standard Deviation by sample of ints.
