@@ -1,0 +1,1 @@
+Usage: go build && ./readDB -f recipes.json

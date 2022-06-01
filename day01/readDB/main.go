@@ -35,7 +35,10 @@ type XmlReader struct {
 }
 
 func (r *JsonReader) parseFile() Recipes {
-	data, _ := os.ReadFile(r.FileName)
+	data, err := os.ReadFile(r.FileName)
+	if err != nil {
+		log.Fatalf("%v", err)
+	}
 	var Cakes Recipes
 	if err := json.Unmarshal(data, &Cakes); err != nil {
 		log.Fatal(err)
