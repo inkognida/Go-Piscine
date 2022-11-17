@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	connStr := "user=hardella password=123 dbname=golang sslmode=disable"
+	connStr := "user=hardella password=123 dbname=postgres sslmode=disable"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatalln(err)
@@ -37,7 +37,7 @@ func main() {
 	// inserting method
 	insertQuery := `INSERT INTO Places (id, name, phone, address, longitude, latitude) values ($1, $2, $3, $4, $5, $6)`
 
-	data, err := os.Open("/Users/artemshibaev/Go-Piscine/day03/LoadingData/data.csv")
+	data, err := os.Open("/Users/hardella/GolandProjects/Go-Piscine/day03/LoadingData/data.csv")
 	if err != nil {
 		log.Fatalln(err)
 	}
