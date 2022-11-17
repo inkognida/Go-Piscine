@@ -3,15 +3,14 @@ package main
 import (
 	"bufio"
 	"database/sql"
-	_ "github.com/lib/pq"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	_ "github.com/lib/pq"
 )
-
-
-
 
 func main() {
 
@@ -38,7 +37,7 @@ func main() {
 	// inserting method
 	insertQuery := `INSERT INTO Places (id, name, phone, address, longitude, latitude) values ($1, $2, $3, $4, $5, $6)`
 
-	data, err := os.Open("/Users/artemshibaev/Go_Day03-0/materials/data.csv")
+	data, err := os.Open("/Users/artemshibaev/Go-Piscine/day03/LoadingData/data.csv")
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -57,25 +56,23 @@ func main() {
 		_, err = db.Exec(insertQuery, id, name, phone, address, longitude, latitude)
 	}
 
+	// display method
 
-	//display method
+	rows, err := db.Query("SELECT * FROM Places")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer rows.Close()
 
-	//rows, err := db.Query("SELECT * FROM Places")
-	//if err != nil {
-	//	log.Fatalln(err)
-	//}
-	//defer rows.Close()
-	//
-	//for rows.Next() {
-	//	var name, phone, address string
-	//	var id int
-	//	var longiture, latitude float32
-	//	err = rows.Scan(&id, &name, &phone, &address, &longiture, &latitude)
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//	fmt.Println(id, name, phone, address, longiture, latitude)
-	//	break
-	//}
+	for rows.Next() {
+		var name, phone, address string
+		var id int
+		var longiture, latitude float32
+		err = rows.Scan(&id, &name, &phone, &address, &longiture, &latitude)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(id, name, phone, address, longiture, latitude)
+		break
+	}
 }
-
