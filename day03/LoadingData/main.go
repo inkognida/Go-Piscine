@@ -54,6 +54,9 @@ func main() {
 		latitude, _ := strconv.ParseFloat(info[5], 64)
 
 		_, err = db.Exec(insertQuery, id, name, phone, address, longitude, latitude)
+		if err != nil {
+			log.Fatalln("error")
+		}
 	}
 
 	// display method
@@ -73,6 +76,5 @@ func main() {
 			log.Fatal(err)
 		}
 		fmt.Println(id, name, phone, address, longiture, latitude)
-		break
 	}
 }
